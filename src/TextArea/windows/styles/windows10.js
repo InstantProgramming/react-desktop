@@ -1,4 +1,9 @@
-export default {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
   textBox: {
     WebkitUserSelect: 'none',
     userSelect: 'none',
@@ -56,7 +61,5 @@ export default {
     }
   },
 
-  labalDarkTheme: {
-
-  }
+  labalDarkTheme: {}
 };

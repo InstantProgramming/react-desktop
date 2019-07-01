@@ -1,19 +1,30 @@
-export default function mapStyles(styles, map) {
-  let popped = [];
-  let mappedStyles = {};
-  for (let prop in map) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = mapStyles;
+function mapStyles(styles, map) {
+  var popped = [];
+  var mappedStyles = {};
+
+  var _loop = function _loop(prop) {
     if (map.hasOwnProperty(prop)) {
       mappedStyles[prop] = {};
-      map[prop].forEach(key => {
+      map[prop].forEach(function (key) {
         if (styles !== undefined && typeof styles[key] !== 'undefined') {
           popped.push(key);
           mappedStyles[prop][key] = styles[key];
         }
-      })
+      });
     }
+  };
+
+  for (var prop in map) {
+    _loop(prop);
   }
-  let remaining = {};
-  for (let prop in styles) {
+  var remaining = {};
+  for (var prop in styles) {
     if (styles.hasOwnProperty(prop)) {
       if (popped.indexOf(prop) === -1) {
         remaining[prop] = styles[prop];
@@ -21,10 +32,10 @@ export default function mapStyles(styles, map) {
     }
   }
 
-  let finalStyles = [remaining];
-  for (let prop in mappedStyles) {
-    if (mappedStyles.hasOwnProperty(prop)) {
-      finalStyles.push(mappedStyles[prop]);
+  var finalStyles = [remaining];
+  for (var _prop in mappedStyles) {
+    if (mappedStyles.hasOwnProperty(_prop)) {
+      finalStyles.push(mappedStyles[_prop]);
     }
   }
 

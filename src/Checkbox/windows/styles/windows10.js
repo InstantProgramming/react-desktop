@@ -1,4 +1,9 @@
-export default {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
   container: {
     display: 'flex',
     marginBottom: '22px'
@@ -52,7 +57,7 @@ export default {
   },
 
   checkboxDark: {
-    borderColor: 'rgba(255, 255, 255, .82)',
+    borderColor: 'rgba(255, 255, 255, .82)'
   },
 
   'checkbox:active': {

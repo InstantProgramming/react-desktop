@@ -1,4 +1,9 @@
-export default {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
   close: {
     button: {
       WebkitUserSelect: 'none',
@@ -26,7 +31,7 @@ export default {
 
     unfocused: {
       backgroundColor: '#dddddd',
-      borderColor: '#d0d0d0',
+      borderColor: '#d0d0d0'
     },
 
     disabled: {
@@ -71,7 +76,7 @@ export default {
 
     unfocused: {
       backgroundColor: '#dddddd',
-      borderColor: '#d0d0d0',
+      borderColor: '#d0d0d0'
     },
 
     disabled: {

@@ -1,25 +1,44 @@
-import PropTypes from 'prop-types';
-import styleHelper, { extractProps, parseDimension } from '../styleHelper';
+'use strict';
 
-export const fontSizePropTypes = {
-  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.fontSizePropTypes = undefined;
+exports.removeFontSizeProps = removeFontSizeProps;
+
+exports.default = function () {
+  for (var _len = arguments.length, options = Array(_len), _key = 0; _key < _len; _key++) {
+    options[_key] = arguments[_key];
+  }
+
+  return (0, _styleHelper2.default)(options, fontSizePropTypes, mapFontSizeStyle, mapFontSizeStyles);
 };
 
-export function removeFontSizeProps(props) {
-  return extractProps(props, fontSizePropTypes)[0];
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _styleHelper = require('../styleHelper');
+
+var _styleHelper2 = _interopRequireDefault(_styleHelper);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var fontSizePropTypes = exports.fontSizePropTypes = {
+  size: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+};
+
+function removeFontSizeProps(props) {
+  return (0, _styleHelper.extractProps)(props, fontSizePropTypes)[0];
 }
 
 function mapFontSizeStyle(key, value) {
-  return ['fontSize', parseDimension(value)];
+  return ['fontSize', (0, _styleHelper.parseDimension)(value)];
 }
 
 function mapFontSizeStyles(styles) {
   if (styles.fontSize && !styles.lineHeight) {
-    styles.lineHeight = parseDimension(parseInt(styles.fontSize) * 1.2);
+    styles.lineHeight = (0, _styleHelper.parseDimension)(parseInt(styles.fontSize) * 1.2);
   }
   return styles;
-}
-
-export default function(...options) {
-  return styleHelper(options, fontSizePropTypes, mapFontSizeStyle, mapFontSizeStyles);
 }

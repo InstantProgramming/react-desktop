@@ -1,18 +1,42 @@
-import PropTypes from 'prop-types';
-import styleHelper, { extractProps } from '../styleHelper';
+'use strict';
 
-const allowedValues = ['left', 'right', 'center'];
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.textAlignPropTypes = undefined;
+exports.removeTextAlignProps = removeTextAlignProps;
 
-export const textAlignPropTypes = {
-  textAlign: PropTypes.string
+exports.default = function () {
+  for (var _len = arguments.length, options = Array(_len), _key = 0; _key < _len; _key++) {
+    options[_key] = arguments[_key];
+  }
+
+  return (0, _styleHelper2.default)(options, textAlignPropTypes, mapTextAlignStyle);
 };
 
-export function removeTextAlignProps(props) {
-  return extractProps(props, textAlignPropTypes)[0];
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _styleHelper = require('../styleHelper');
+
+var _styleHelper2 = _interopRequireDefault(_styleHelper);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var allowedValues = ['left', 'right', 'center'];
+
+var textAlignPropTypes = exports.textAlignPropTypes = {
+  textAlign: _propTypes2.default.string
+};
+
+function removeTextAlignProps(props) {
+  return (0, _styleHelper.extractProps)(props, textAlignPropTypes)[0];
 }
 
 function mapTextAlignStyle(key, value) {
-  let finalKey, finalValue;
+  var finalKey = void 0,
+      finalValue = void 0;
   if (allowedValues.indexOf(value) === -1) {
     console.error('Unknown value for ' + key + ': ' + value);
   } else {
@@ -20,8 +44,4 @@ function mapTextAlignStyle(key, value) {
     finalValue = value;
   }
   return [finalKey, finalValue];
-}
-
-export default function(...options) {
-  return styleHelper(options, textAlignPropTypes, mapTextAlignStyle);
 }

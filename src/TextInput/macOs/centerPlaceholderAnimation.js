@@ -1,23 +1,32 @@
-import BezierEasing from '../../animation/bezierEasing';
+'use strict';
 
-let requestAnimationFrame;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.pullLeft = pullLeft;
+exports.pushCenter = pushCenter;
+
+var _bezierEasing = require('../../animation/bezierEasing');
+
+var _bezierEasing2 = _interopRequireDefault(_bezierEasing);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var requestAnimationFrame = void 0;
 if (typeof window !== 'undefined') {
-  requestAnimationFrame = window.requestAnimationFrame ||
-    window.mozRequestAnimationFrame ||
-    window.webkitRequestAnimationFrame ||
-    window.msRequestAnimationFrame;
+  requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
 }
 
-let startTimestamp;
-const duration = 350;
-const easing = BezierEasing(.3,.14,0,1);
+var startTimestamp = void 0;
+var duration = 350;
+var easing = (0, _bezierEasing2.default)(.3, .14, 0, 1);
 
 function moveLabel(timestamp, label, start, current, end, cb) {
   if (start === end) return null;
   if (!startTimestamp) startTimestamp = timestamp;
-  let progress = 1 - (timestamp - startTimestamp) / duration;
+  var progress = 1 - (timestamp - startTimestamp) / duration;
   if (progress < 0) progress = 0;
-  progress = 1 - (easing.get(1 - progress));
+  progress = 1 - easing.get(1 - progress);
   if (start > end) {
     current = progress * start;
   } else {
@@ -26,7 +35,9 @@ function moveLabel(timestamp, label, start, current, end, cb) {
 
   label.style.left = current + 'px';
   if (start > end && current > end || start < end && current < end) {
-    requestAnimationFrame(timestamp => moveLabel(timestamp, label, start, current, end));
+    requestAnimationFrame(function (timestamp) {
+      return moveLabel(timestamp, label, start, current, end);
+    });
   } else {
     label.style.left = end + 'px';
     if (cb) cb();
@@ -34,32 +45,37 @@ function moveLabel(timestamp, label, start, current, end, cb) {
 }
 
 function animateLabel(label, start, end) {
-  return new Promise(resolve => {
+  return new Promise(function (resolve) {
     if (requestAnimationFrame) {
-      requestAnimationFrame(timestamp => moveLabel(timestamp, label, start, start, end, resolve));
+      requestAnimationFrame(function (timestamp) {
+        return moveLabel(timestamp, label, start, start, end, resolve);
+      });
     }
   });
 }
 
-export function pullLeft(input, label) {
+function pullLeft(input, label) {
   startTimestamp = null;
-  const start = label.offsetLeft;
+  var start = label.offsetLeft;
   input.style.color = 'transparent';
   label.style.position = 'absolute';
-  setTimeout(() => {
+  setTimeout(function () {
     animateLabel(label, start, 2);
-    setTimeout(() => input.style.color = null, 300);
+    setTimeout(function () {
+      return input.style.color = null;
+    }, 300);
   }, 10);
 }
 
-export function pushCenter(input, label) {
+function pushCenter(input, label) {
   startTimestamp = null;
   label.style.position = 'relative';
-  const end = label.offsetLeft;
+  var end = label.offsetLeft;
   label.style.position = 'absolute';
 
-  setTimeout(() => {
-    animateLabel(label, 2, end)
-      .then(() => label.style.position = 'relative');
+  setTimeout(function () {
+    animateLabel(label, 2, end).then(function () {
+      return label.style.position = 'relative';
+    });
   }, 10);
 }

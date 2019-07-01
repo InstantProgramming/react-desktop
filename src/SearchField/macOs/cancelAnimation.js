@@ -1,32 +1,39 @@
-let requestAnimationFrame;
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function (element) {
+  if (requestAnimationFrame) {
+    startTimestamp = null;
+    var icon = element.getElementsByTagName('svg')[0];
+    requestAnimationFrame(function (timestamp) {
+      return animateCancelIcon(timestamp, icon);
+    });
+  }
+};
+
+var requestAnimationFrame = void 0;
 if (typeof window !== 'undefined') {
-  requestAnimationFrame = window.requestAnimationFrame ||
-    window.mozRequestAnimationFrame ||
-    window.webkitRequestAnimationFrame ||
-    window.msRequestAnimationFrame;
+  requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
 }
 
-let startTimestamp;
-const duration = 150;
+var startTimestamp = void 0;
+var duration = 150;
 
 function animateCancelIcon(timestamp, element) {
   if (!startTimestamp) startTimestamp = timestamp;
-  let progress = (timestamp - startTimestamp) / duration;
+  var progress = (timestamp - startTimestamp) / duration;
   if (progress > 1) progress = 1;
 
-  element.style.height = (14 * progress) + 'px';
-  element.style.width = (14 * progress) + 'px';
+  element.style.height = 14 * progress + 'px';
+  element.style.width = 14 * progress + 'px';
   element.style.opacity = progress;
 
   if (progress !== 1) {
-    requestAnimationFrame(timestamp => animateCancelIcon(timestamp, element));
-  }
-}
-
-export default function(element) {
-  if (requestAnimationFrame) {
-    startTimestamp = null;
-    const icon = element.getElementsByTagName('svg')[0];
-    requestAnimationFrame(timestamp => animateCancelIcon(timestamp, icon));
+    requestAnimationFrame(function (timestamp) {
+      return animateCancelIcon(timestamp, element);
+    });
   }
 }

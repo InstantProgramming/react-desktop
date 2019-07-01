@@ -1,4 +1,9 @@
-export default {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
   pane: {
     cursor: 'default',
     WebkitUserSelect: 'none',
@@ -30,25 +35,23 @@ export default {
     height: '44px',
 
     ':hover': {
-      backgroundColor: 'rgba(0, 0, 0, .1)',
+      backgroundColor: 'rgba(0, 0, 0, .1)'
     },
     ':active': {
-      backgroundColor: 'rgba(0, 0, 0, .2)',
+      backgroundColor: 'rgba(0, 0, 0, .2)'
     }
   },
 
   anchorDark: {
     ':hover': {
-      backgroundColor: 'rgba(255, 255, 255, .1)',
+      backgroundColor: 'rgba(255, 255, 255, .1)'
     },
     ':active': {
-      backgroundColor: 'rgba(255, 255, 255, .2)',
+      backgroundColor: 'rgba(255, 255, 255, .2)'
     }
   },
 
-  anchorTitle: {
-
-  },
+  anchorTitle: {},
 
   anchorIcon: {
     marginRight: '8px',
@@ -70,7 +73,7 @@ export default {
   },
 
   spanDark: {
-    color: '#ffffff',
+    color: '#ffffff'
   },
 
   pushTransformHover: {

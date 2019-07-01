@@ -1,4 +1,9 @@
-export default {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
   titleBar: {
     WebkitUserSelect: 'none',
     userSelect: 'none',
@@ -9,8 +14,7 @@ export default {
     display: 'flex',
     alignItems: 'center',
     minHeight: '22px',
-    backgroundImage:
-      '-webkit-linear-gradient(top, #ededed 0, #ededed 1px, #e7e7e7 2px, #d1d1d1 100%)',
+    backgroundImage: '-webkit-linear-gradient(top, #ededed 0, #ededed 1px, #e7e7e7 2px, #d1d1d1 100%)',
     borderBottomWidth: '1px',
     borderBottomStyle: 'solid',
     borderBottomColor: '#afafaf',
@@ -31,8 +35,7 @@ export default {
   },
 
   unfocusedTitleBar: {
-    backgroundImage:
-      '-webkit-linear-gradient(top, #fafafa 0px, #f6f6f6 2px, #f6f6f6 100%)',
+    backgroundImage: '-webkit-linear-gradient(top, #fafafa 0px, #f6f6f6 2px, #f6f6f6 100%)',
     borderBottomColor: '#d1d1d1'
   },
 
@@ -40,8 +43,7 @@ export default {
     WebkitUserSelect: 'none',
     userSelect: 'none',
     cursor: 'default',
-    fontFamily:
-      '-apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif',
+    fontFamily: '-apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif',
     fontSize: '13px',
     letterSpacing: '0px',
     color: '#4d4d4d',

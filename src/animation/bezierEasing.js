@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * BezierEasing - use bezier curve for transition easing function
  * by Gaëtan Renaudeau 2014 - 2015 – MIT License
@@ -41,7 +43,9 @@ function getSlope(aT, aA1, aA2) {
 }
 
 function binarySubdivide(aX, aA, aB, mX1, mX2) {
-  var currentX, currentT, i = 0;
+  var currentX,
+      currentT,
+      i = 0;
   do {
     currentT = aA + (aB - aA) / 2.0;
     currentX = calcBezier(currentT, mX1, mX2) - aX;
@@ -96,11 +100,11 @@ function BezierEasing(points, b, c, d) {
 
 BezierEasing.prototype = {
 
-  get: function (x) {
+  get: function get(x) {
     var mX1 = this._p[0],
-      mY1 = this._p[1],
-      mX2 = this._p[2],
-      mY2 = this._p[3];
+        mY1 = this._p[1],
+        mX2 = this._p[2],
+        mY2 = this._p[3];
     if (!this._precomputed) this._precompute();
     if (mX1 === mY1 && mX2 === mY2) return x; // linear
     // Because JavaScript number are imprecise, we should guarantee the extremes are right.
@@ -109,33 +113,32 @@ BezierEasing.prototype = {
     return calcBezier(this._getTForX(x), mY1, mY2);
   },
 
-  getPoints: function () {
+  getPoints: function getPoints() {
     return this._p;
   },
 
-  toString: function () {
+  toString: function toString() {
     return this._str;
   },
 
-  toCSS: function () {
+  toCSS: function toCSS() {
     return this._css;
   },
 
   // Private part
 
-  _precompute: function () {
+  _precompute: function _precompute() {
     var mX1 = this._p[0],
-      mY1 = this._p[1],
-      mX2 = this._p[2],
-      mY2 = this._p[3];
+        mY1 = this._p[1],
+        mX2 = this._p[2],
+        mY2 = this._p[3];
     this._precomputed = true;
-    if (mX1 !== mY1 || mX2 !== mY2)
-      this._calcSampleValues();
+    if (mX1 !== mY1 || mX2 !== mY2) this._calcSampleValues();
   },
 
-  _calcSampleValues: function () {
+  _calcSampleValues: function _calcSampleValues() {
     var mX1 = this._p[0],
-      mX2 = this._p[2];
+        mX2 = this._p[2];
     for (var i = 0; i < kSplineTableSize; ++i) {
       this._mSampleValues[i] = calcBezier(i * kSampleStepSize, mX1, mX2);
     }
@@ -144,10 +147,10 @@ BezierEasing.prototype = {
   /**
    * getTForX chose the fastest heuristic to determine the percentage value precisely from a given X projection.
    */
-  _getTForX: function (aX) {
+  _getTForX: function _getTForX(aX) {
     var mX1 = this._p[0],
-      mX2 = this._p[2],
-      mSampleValues = this._mSampleValues;
+        mX2 = this._p[2],
+        mSampleValues = this._mSampleValues;
 
     var intervalStart = 0.0;
     var currentSample = 1;

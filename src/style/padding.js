@@ -1,21 +1,48 @@
-import PropTypes from 'prop-types';
-import styleHelper, { extractProps, parseDimension } from '../styleHelper';
+'use strict';
 
-export const paddingPropTypes = {
-  padding: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  paddingTop: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  paddingLeft: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  paddingRight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  paddingBottom: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.paddingPropTypes = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.removePaddingProps = removePaddingProps;
+exports.removeDuplicatePaddingProps = removeDuplicatePaddingProps;
+
+exports.default = function () {
+  for (var _len = arguments.length, options = Array(_len), _key = 0; _key < _len; _key++) {
+    options[_key] = arguments[_key];
+  }
+
+  return (0, _styleHelper2.default)(options, paddingPropTypes, mapPaddingStyle);
 };
 
-export function removePaddingProps(props) {
-  return extractProps(props, paddingPropTypes)[0];
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _styleHelper = require('../styleHelper');
+
+var _styleHelper2 = _interopRequireDefault(_styleHelper);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var paddingPropTypes = exports.paddingPropTypes = {
+  padding: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]),
+  paddingTop: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]),
+  paddingLeft: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]),
+  paddingRight: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]),
+  paddingBottom: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+};
+
+function removePaddingProps(props) {
+  return (0, _styleHelper.extractProps)(props, paddingPropTypes)[0];
 }
 
-export function removeDuplicatePaddingProps(styles, props) {
+function removeDuplicatePaddingProps(styles, props) {
   if (props !== undefined && typeof props.style !== 'undefined') {
-    styles = { ...styles };
+    styles = _extends({}, styles);
     if (props.style.padding) {
       delete styles.paddingBottom;
       delete styles.paddingLeft;
@@ -31,9 +58,5 @@ export function removeDuplicatePaddingProps(styles, props) {
 }
 
 function mapPaddingStyle(key, value) {
-  return [key, parseDimension(value)];
-}
-
-export default function(...options) {
-  return styleHelper(options, paddingPropTypes, mapPaddingStyle);
+  return [key, (0, _styleHelper.parseDimension)(value)];
 }

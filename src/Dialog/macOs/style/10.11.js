@@ -1,4 +1,9 @@
-export default {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
   container: {
     MozUserSelect: 'none',
     WebkitUserSelect: 'none',
@@ -14,7 +19,7 @@ export default {
     width: '67px',
     marginRight: '20px',
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   contentContainer: {
     flex: 1

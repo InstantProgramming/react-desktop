@@ -1,4 +1,9 @@
-export default {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
   sergmentedControl: {
     WebkitUserSelect: 'none',
     userSelect: 'none',
@@ -92,8 +97,7 @@ export default {
     paddingRight: '12px'
   },
 
-  afterSelected: {
-  },
+  afterSelected: {},
 
   selectedUnfocused: {
     background: '#e5e5e5',

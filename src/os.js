@@ -1,11 +1,17 @@
-export const MACOS = 'macOs';
-export const WINDOWS = 'windows';
+'use strict';
 
-export default function os() {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = os;
+var MACOS = exports.MACOS = 'macOs';
+var WINDOWS = exports.WINDOWS = 'windows';
+
+function os() {
   // explicitly set these to avoid issues
-  const w = window || null;
-  const n = navigator || null;
-  const p = process || (w && w.process) || null;
+  var w = window || null;
+  var n = navigator || null;
+  var p = process || w && w.process || null;
 
   // via node
   if (p && p.platform) {

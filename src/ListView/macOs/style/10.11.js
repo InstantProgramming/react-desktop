@@ -1,4 +1,9 @@
-export default {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
   container: {
     position: 'relative',
     display: 'flex',
@@ -18,6 +23,6 @@ export default {
   list: {
     listStyle: 'none',
     padding: '0px',
-    margin: '0px',
+    margin: '0px'
   }
 };
